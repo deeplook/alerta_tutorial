@@ -14,6 +14,8 @@ then
 fi
 read -p "Next, when installing Miniconda2, agree to terms, install into './miniconda2', do NOT modify PATH..."
 bash Miniconda-latest-MacOSX-x86_64.sh
+# alternative(s):
+# https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
 
 # update & install stuff
 cd $ALERTA_TEST_DIR
