@@ -1,8 +1,8 @@
-README
-======
+Alerta Tutorial
+===============
 
 This is a repository created to get you excited about `alerta.io <http://alerta.io>`_,
-a sophisticated 'meta-monitoring' solution. It tries to give you a very fast introduction to setting up a working local installation and play with your own alerts in a time-frame of 5-10 minutes.
+a sophisticated event monitoring solution. This tutorial wants to provide you with a zero effort, risk-free opportunity to install from scratch all you need to play with your own alerts, including Python, MongoDB, Alerta server and dashboard as well as a set of sample alerts. Plus an interactive Jupyter notebook serving as a tutorial and presentation. All this in abou 10 minutes! (If you are not on MacOS X, you will have to make very small changes manually, first.)
 
 
 Getting started
