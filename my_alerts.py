@@ -2,19 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
-Run periodic monitoring functions and create alerts for alerta.io.
-
-Todo: 
-
-- define API endpoint and key in some more global fashion.
-- extract the part of deleting existing alerts into something else (decorator?)
+Run monitoring functions periodically and create alerts for alerta.io.
 """
 
-
 import os
-# import re
 import sys
-# import time
 import warnings
 import argparse
 import threading
@@ -43,7 +35,7 @@ DRY_RUN = False
 
 def alert_volume_not_existing(path):
     """
-    Create alert if a volume does not exist, delete previous alert if it does.
+    Alert if a volume does not exist, delete previous alert if it does.
     
     Command-line alternative (replace path argument):
 
@@ -69,7 +61,7 @@ def alert_volume_not_existing(path):
         result = api.send(alert)
         if result['status'] == 'error':
             print result
-            # raise IndexError ## TODO: make more meaningfull exception
+            # raise IndexError ## TODO: make more meaningful exception
     else:
         # delete existing alert
         query = dict(**alert_desc)
@@ -77,11 +69,12 @@ def alert_volume_not_existing(path):
             api.delete_alert(alert['id'])
 
 
+
 def alert_no_internet_access(url='http://www.google.com'):
     """
-    Create alert if no internet access available, delete previous alert if it is.
+    Alert if no internet access available, delete previous alert if it is.
     
-    Command-line alternative (replace path argument):
+    Command-line alternative (replace path argument)::
 
         alerta send -r network -e InternetUnavailable -E Network \
             -S Network -s critical -t "Network not available." -v <url>
@@ -106,7 +99,7 @@ def alert_no_internet_access(url='http://www.google.com'):
             result = api.send(alert)
             if result['status'] == 'error':
                 print result
-                # raise IndexError ## TODO: make more meaningfull exception
+                # raise IndexError ## TODO: make more meaningful exception
         else:
             print alert_desc
     else:
@@ -119,7 +112,7 @@ def alert_no_internet_access(url='http://www.google.com'):
 
 def alert_conda_outdated(path):
     """
-    Create alert for an outdated conda package, delete previous alert if up to date.
+    Alert for an outdated conda package, delete previous alert if up to date.
     """
 
     for (n, installed_version, latest_version) in utils.get_conda_updates(path):
@@ -166,14 +159,19 @@ def alert_conda_outdated(path):
 
 def alert_kickstarter_days(url):
     """
+    Alert if a kickstarter campaign will end, soon.
 
-    We need Selenium because the number we want is updated dynamically on the HTML page.
-    And we need to scrape because there is no public API to get it, despite the following
-    which gives some data, but not the number of days left:
+    We need Selenium because the number we want is updated dynamically on the
+    HTML page. And we need to scrape because there is no public API to get it,
+    despite the following which gives some data, but not the number of days
+    left:
+
     https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/
     """
-
-    num_days_left = utils.get_kickstarter_days_left(url)
+    # phantomjs <= 1.9.8 will not work...
+    phantomjs_path = 'phantomjs-2.1.1-macosx/bin/phantomjs'
+    browser = utils.webdriver.PhantomJS(phantomjs_path)
+    num_days_left = utils.get_kickstarter_days_left(url, browser)
     campaign_title = basename(url) if basename(url) else dirname(url)
 
     event = 'CampaignEndingSoon'
@@ -197,15 +195,13 @@ def alert_kickstarter_days(url):
         environment=environment, service=service,
         severity=severity, text=text, value=str(num_days_left))
 
-    # print alert_desc
-
     if num_days_left < 28:
         # send new alert
         alert = Alert(**alert_desc)
         result = api.send(alert)
         if result['status'] == 'error':
             print result
-            # raise IndexError ## TODO: make more meaningfull exception
+            # raise IndexError ## TODO: make more meaningful exception
     else:
         # delete existing alert
         del alert_desc['value']
@@ -218,7 +214,7 @@ def alert_kickstarter_days(url):
 
 def alert_webpage(url, *args, **kwargs):
     """
-    Alert if loading a webpage has unexpected content.
+    Alert if a webpage has unexpected content.
     """
     info = utils.get_webpage_info(url, *args, **kwargs)
 
@@ -248,7 +244,7 @@ def alert_webpage(url, *args, **kwargs):
         result = api.send(alert)
         # if result['status'] == 'error':
         #     print result
-        #     # raise IndexError ## TODO: make more meaningfull exception
+        #     # raise IndexError ## TODO: make more meaningful exception
     else:
         # delete existing alert
         del alert_desc['value']
@@ -261,7 +257,7 @@ def alert_webpage(url, *args, **kwargs):
 
 def alert_python_sites_status():
     """
-    Alert if any Python-related website is not 'operational'.
+    Alert if any Python-related website infrastructure is not 'operational'.
     """
     statuses = utils.get_python_sites_status()
 
@@ -287,7 +283,7 @@ def alert_python_sites_status():
             result = api.send(alert)
             if result['status'] == 'error':
                 print result
-                # raise IndexError ## TODO: make more meaningfull exception
+                # raise IndexError ## TODO: make more meaningful exception
         else:
             # delete existing alert
             del alert_desc['value']
@@ -321,7 +317,7 @@ def alert_no_vpn(**kwdict):
             result = api.send(alert)
             if result['status'] == 'error':
                 print result
-                # raise IndexError ## TODO: make more meaningfull exception
+                # raise IndexError ## TODO: make more meaningful exception
         else:
             print alert_desc
     else:
@@ -330,14 +326,6 @@ def alert_no_vpn(**kwdict):
             query = dict(**alert_desc)
             for alert in api.get_alerts(query=query)['alerts']:
                 api.delete_alert(alert['id'])
-
-
-def alert_kickstarter_days(url):
-    """
-    Alert if a kickstarter campaign approaches its end.
-    """
-    # remaining_days = utils.get_kickstarter_days_left(url)
-    raise NotImplementedError
 
 
 #
