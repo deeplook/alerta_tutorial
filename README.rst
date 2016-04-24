@@ -10,13 +10,43 @@ Getting started
 
 This is the suggested sequence of steps to get started:
 
-- clone this repo into a local directory using ``git clone https://github.com/deeplook/alerta_tutorial.git``
-- change into this directory, ``cd alerta_tutorial``
-- perform baseline setup, ``bash setup.sh`` (install Miniconda2, IPython and Jupyter + reveal.js plugin)
-- perform installation, ``bash install.sh`` (MongoDB, Alerta server and dashboard)
-- install dependencies for custom alerts, ``bash custom.sh`` (some Python packages, plus PhantomJS)
-- start services, ``bash start.sh`` (MongoDB, Alerta server and dashboard, open Jupyter notebook ``tutorial.jpynb``
+- clone this repo into a local directory and change into to:
+
+  .. code-block:: console
+
+  	 git clone https://github.com/deeplook/alerta_tutorial.git
+	 cd alerta_tutorial
+
+- perform baseline setup (install Miniconda2, IPython and Jupyter + reveal.js plugin):
+
+  .. code-block:: console
+
+	 bash setup.sh
+
+- perform installation (MongoDB, Alerta server and dashboard):
+
+  .. code-block:: console
+
+	 bash install.sh
+
+- install dependencies for custom alerts (some Python packages, plus PhantomJS):
+
+  .. code-block:: console
+
+     bash custom.sh
+
+- start services (MongoDB, Alerta server and dashboard, also opens Jupyter notebook ``tutorial.jpynb``::
+
+  .. code-block:: console
+
+    bash start.sh
+
 - in the notebook click on the button with a text pop-up label "Enter/Exit Live Reveal Slideshow"
+
 - execute cells and play with your own alerts!
 
-To clean up by stopping all services and removing the installation directory, simply do ``bash cleanup.sh``.
+To clean up by stopping all services and removing the installation directory, simply do:
+
+  .. code-block:: console
+
+    bash cleanup.sh
