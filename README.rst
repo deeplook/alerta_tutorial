@@ -39,7 +39,7 @@ This is the suggested sequence of steps to get started:
 
   .. code-block:: console
 
-    bash start.sh
+     bash start.sh
 
 - in the notebook click on the button with a text pop-up label "Enter/Exit Live Reveal Slideshow"
 
@@ -49,4 +49,4 @@ To clean up by stopping all services and removing the installation directory, si
 
   .. code-block:: console
 
-    bash cleanup.sh
+     bash cleanup.sh
