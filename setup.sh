@@ -16,8 +16,7 @@ then
 fi
 if [ ! -d miniconda2 ]
 then
-    read -p "Next, when installing Miniconda2, agree to terms, install into './miniconda2', do NOT modify PATH..."
-    bash Miniconda-latest-MacOSX-x86_64.sh
+    bash Miniconda-latest-MacOSX-x86_64.sh -b -f -p ./miniconda2
 fi
 
 # update & install stuff
