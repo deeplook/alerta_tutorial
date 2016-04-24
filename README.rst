@@ -10,24 +10,35 @@ Getting started
 
 This is the suggested sequence of steps to get started:
 
-- clone this repo into a local directory and change into to:
+- TLDR;
 
   .. code-block:: console
 
-  	 git clone https://github.com/deeplook/alerta_tutorial.git
-	 cd alerta_tutorial
+     git clone https://github.com/deeplook/alerta_tutorial.git
+     cd alerta_tutorial
+     bash setup.sh
+     bash install.sh
+     bash custom.sh
+     bash start.sh
+
+- or, clone this repo into a local directory and change into to:
+
+  .. code-block:: console
+
+     git clone https://github.com/deeplook/alerta_tutorial.git
+     cd alerta_tutorial
 
 - perform baseline setup (install Miniconda2, IPython and Jupyter + reveal.js plugin):
 
   .. code-block:: console
 
-	 bash setup.sh
+     bash setup.sh
 
 - perform installation (MongoDB, Alerta server and dashboard):
 
   .. code-block:: console
 
-	 bash install.sh
+     bash install.sh
 
 - install dependencies for custom alerts (some Python packages, plus PhantomJS):
 
