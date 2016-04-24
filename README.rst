@@ -35,7 +35,7 @@ This is the suggested sequence of steps to get started:
 
      bash custom.sh
 
-- start services (MongoDB, Alerta server and dashboard, also opens Jupyter notebook ``tutorial.jpynb``::
+- start services (MongoDB, Alerta server and dashboard, also opens Jupyter notebook ``tutorial.jpynb``:
 
   .. code-block:: console
 
@@ -47,6 +47,6 @@ This is the suggested sequence of steps to get started:
 
 To clean up by stopping all services and removing the installation directory, simply do:
 
-  .. code-block:: console
+.. code-block:: console
 
-     bash cleanup.sh
+   bash cleanup.sh
