@@ -379,7 +379,7 @@ class RepeatedTimer(object):
         self.is_running = False
 
 
-def start(*args, **kwargs):
+def start(**kwargs):
     """
     Run monitoring functions periodically.
 
@@ -415,12 +415,12 @@ def start(*args, **kwargs):
          'kwargs': {'text_contains': '#pythonberlin on Slack'}},
     ]
 
-    if 'list' in kwargs:
+    if 'list' in kwargs and kwargs['list']:
         for item in alert_functions:
             print '  %s' % item['name']
         return []
     
-    if 'name' in kwargs:
+    if 'name' in kwargs and kwargs['name']:
         name = kwargs['name']
         res = []
         for item in alert_functions:
@@ -432,7 +432,7 @@ def start(*args, **kwargs):
                 rt = RepeatedTimer(repeat, func, args=args, kwargs=kwargs)
                 res.append(rt)
         return res
-    elif 'all' in kwargs:
+    elif 'all' in kwargs and kwargs['name']:
         res = []
         for item in alert_functions:
             repeat = item['repeat']
@@ -476,7 +476,7 @@ def main():
         global DRY_RUN
         DRY_RUN = True
 
-    start(args._get_args(), args._get_kwargs())
+    start(**dict(args._get_kwargs()))
 
 
 if __name__ == '__main__':
