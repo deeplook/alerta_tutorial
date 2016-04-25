@@ -10,18 +10,23 @@ Getting started
 
 This is the suggested sequence of steps to get started:
 
-- TLDR;
+TLDR;
+.....
 
-  .. code-block:: console
+.. code-block:: console
 
-     git clone https://github.com/deeplook/alerta_tutorial.git
-     cd alerta_tutorial
-     bash setup.sh
-     bash install.sh
-     bash custom.sh
-     bash start.sh
+    git clone https://github.com/deeplook/alerta_tutorial.git
+    cd alerta_tutorial
+    bash setup.sh
+    bash install.sh
+    bash custom.sh
+    bash start.sh
 
-- or, clone this repo into a local directory and change into to:
+
+Details
+.......
+
+- clone this repo into a local directory and change into to:
 
   .. code-block:: console
 
@@ -56,7 +61,11 @@ This is the suggested sequence of steps to get started:
 
 - execute cells and play with your own alerts!
 
-To clean up by stopping all services and removing the installation directory, simply do:
+
+Clean Up
+........
+
+To clean up by stopping all services and removing everything built in the installation directory, simply do:
 
 .. code-block:: console
 
