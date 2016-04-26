@@ -157,7 +157,7 @@ def alert_conda_outdated(path):
             print alert_desc
 
 
-def alert_kickstarter_days(url):
+def alert_kickstarter_days(url, browser=None):
     """
     Alert if a kickstarter campaign will end, soon.
 
@@ -168,9 +168,7 @@ def alert_kickstarter_days(url):
 
     https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot/
     """
-    # phantomjs <= 1.9.8 will not work...
-    phantomjs_path = 'phantomjs-2.1.1-macosx/bin/phantomjs'
-    browser = utils.webdriver.PhantomJS(phantomjs_path)
+    browser = browser or utils.webdriver.Firefox()
     num_days_left = utils.get_kickstarter_days_left(url, browser)
     campaign_title = basename(url) if basename(url) else dirname(url)
 
@@ -400,7 +398,9 @@ def start(**kwargs):
         
         {'name': 'alert_kickstarter_days',
          'repeat': 60 * 60 * 6,
-         'args': ['https://www.kickstarter.com/projects/olo3d/olo-the-first-ever-smartphone-3d-printer/description']},
+         'args': ['https://www.kickstarter.com/projects/udoo/udoo-x86-the-most-powerful-maker-board-ever/'],
+         'kwargs': {'browser': utils.webdriver.PhantomJS('./alerta_test_directory/phantomjs-2.1.1-macosx/bin/phantomjs')}
+        },
         
         {'name': 'alert_conda_outdated',
         'repeat': 10,
@@ -432,7 +432,7 @@ def start(**kwargs):
                 rt = RepeatedTimer(repeat, func, args=args, kwargs=kwargs)
                 res.append(rt)
         return res
-    elif 'all' in kwargs and kwargs['name']:
+    elif 'all' in kwargs and kwargs['all']:
         res = []
         for item in alert_functions:
             repeat = item['repeat']

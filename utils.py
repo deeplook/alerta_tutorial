@@ -298,9 +298,6 @@ def get_kickstarter_days_left(url, browser=None):
 
     Unsurprisingly, finished campaigns don't contain this number, anymore.
     """
-    # phantomjs <= 1.9.8 will not work...
-    # phantomjs_path = '/Applications/Added/phantomjs-2.1.1-macosx/bin/phantomjs'
-    # browser = webdriver.PhantomJS(phantomjs_path)
     browser = browser or webdriver.Firefox()
     browser.get(url)
     content = browser.page_source
