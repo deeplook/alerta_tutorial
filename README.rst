@@ -1,14 +1,16 @@
 Alerta Tutorial
 ===============
 
-This is a repository created to get you excited about `alerta.io <http://alerta.io>`_,
-a sophisticated event monitoring solution. This tutorial wants to provide you with a zero effort, risk-free opportunity to install from scratch all you need to play with your own alerts, including Python, MongoDB, Alerta server and dashboard as well as a set of sample alerts. Plus an interactive Jupyter notebook serving as a tutorial and presentation! And all this in about 15 minutes with a modern internet connection! (If you are not on MacOS X, you will have to make very small changes manually, first.)
+This tutorial was created to get you excited about `alerta.io <http://alerta.io>`_,
+a sophisticated, general-purpose event monitoring solution. 
+
+The idea is to provide you with a zero effort, risk-free opportunity to install from scratch all you need to play with your own alerts, including Python, MongoDB, Alerta server and dashboard as well as a set of sample alerts. Plus an interactive Jupyter notebook serving as a tutorial and presentation! And all this in about 15 minutes with a modern internet connection! (If you are not on MacOS X, you will have to make very small changes manually, first.)
 
 
 Getting started
 ---------------
 
-This is the suggested sequence of steps to get started:
+This is the suggested sequence of steps to get started.
 
 TLDR;
 .....
@@ -57,9 +59,7 @@ Details
 
      bash start.sh
 
-- in the notebook click on the button with a text pop-up label "Enter/Exit Live Reveal Slideshow"
-
-- execute cells and play with your own alerts!
+In the notebook click on the button with a text pop-up label "Enter/Exit Live Reveal Slideshow", then execute the cells and play with your own alerts!
 
 
 Clean Up
