@@ -7,7 +7,8 @@ pkill -I -f "mongod --dbpath ./data/db"
 pkill -I -f "./miniconda2/bin/alertad --port 8090"
 pkill -I -f "../../miniconda2/bin/python -m SimpleHTTPServer 8095"
 pkill -I -f "my_alerts.py"
-pkill -I -f "jupyter-notebook"
+pkill -I -f "./miniconda2/bin/jupyter-notebook"
+
 read -p "Click ENTER to remove installation folder, or Ctrl-C to stop here."
 # sudo rm -rf $ALERTA_TEST_DIR
 cd $ALERTA_TEST_DIR
